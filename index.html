@@ -25,7 +25,13 @@
     <!-- Load auth2 library -->
     <script>
       function init() {
+        console.log("init");
         gapi.load("auth2", function () {
+          console.log("auth2");
+          gapi.auth2.init({
+            client_id:
+              "703036570099-kodh0rq8ferrk2eft2he10tub2k0okh6.apps.googleusercontent.com",
+          });
           /* Ready. Make a call to gapi.auth2.init or some other API */
         });
       }
