@@ -7,16 +7,6 @@
     <title>Google Login Basic</title>
     <!-- Load the google platform library -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <!-- onSignin javascript -->
-    <script>
-      function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log("Name: " + profile.getName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail()); // This is null if the 'email' scope is not present.
-      }
-    </script>
     <!-- Load auth2 library -->
     <script>
       function init() {
@@ -30,6 +20,17 @@
           googleAuth.then(
             function () {
               console.log("GoogleAuth Success");
+
+              // loginBtn
+              const loginBtn = document.getElementById("loginBtn");
+              // google auth signin get
+              if (googleAuth.isSignedIn.get()) {
+                console.log("Loginned");
+                loginBtn.value = "Logout";
+              } else {
+                console.log("Not Loginned");
+                loginBtn.value = "Login";
+              }
             },
             function () {
               console.log("GoogleAuth Fail");
@@ -40,10 +41,9 @@
     </script>
   </head>
   <body>
-    <!-- Add a google sign-in button-->
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <h1>hello</h1>
     <!-- Auth Set up -->
+    <input type="button" value="checking..." id="loginBtn" />
+    <h1>Hello</h1>
     <script
       src="https://apis.google.com/js/platform.js?onload=init"
       async
